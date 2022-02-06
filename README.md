@@ -1,2 +1,2 @@
 # FlutterUdemy
-A collection of apps built with the Flutter bootcamp on UDemy
+A collection of apps built with the Flutter bootcamp on Udemy
