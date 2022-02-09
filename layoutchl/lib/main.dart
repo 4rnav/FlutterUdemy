@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
                 child: Text('Container 1'),
               ),
+
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Container(
                   width: 100.0,
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
                   child: Text('Container 4'),
                 ),
               ]),
+              
               Container(
                 height: double.infinity,
                 width: 100.0,
