@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:quizzler/question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -27,9 +30,22 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Widget> scoreKeeper = [
-    //empty list
+  List<Widget> scoreKeeper = [];
+  // List<String> questions = [
+  //   'You can lead a cow down stairs but not up stairs.',
+  //   'Approximately one quarter of human bones are in the feet.',
+  //   'slug\'s blood is green.'
+  // ];
+  // List<bool> answers= [false,true,true];
+  // Question q1 = Question('You can lead a cow down stairs but not up stairs.', false);
+
+  List<Question> qlist = [
+    Question('You can lead a cow down stairs but not up stairs.', false),
+    Question('Approximately one quarter of human bones are in the feet.', true),
+    Question('slug\'s blood is green.', true),
   ];
+
+  int quesNum = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                qlist[quesNum].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -68,12 +84,21 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(
                   () {
+                    bool checkAnswer = qlist[quesNum].questionAnswer;
+
+                    if (checkAnswer == true) {
+                      print('user got it right');
+                    } else {
+                      print('user got it wrong');
+                    }
+
                     scoreKeeper.add(
                       Icon(
                         Icons.check,
                         color: Colors.green,
                       ),
                     );
+                    quesNum++;
                   },
                 );
               },
@@ -95,12 +120,22 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(
                   () {
+                    bool checkAnswer = qlist[quesNum].questionAnswer;
+
+                    if (checkAnswer == false) {
+                      print('user got it right');
+                    } else {
+                      print('user got it wrong');
+                    }
+
                     scoreKeeper.add(
                       Icon(
-                        Icons.check,
+                        Icons.clear,
                         color: Colors.red,
                       ),
                     );
+
+                    quesNum++;
                   },
                 );
               },
