@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
+import 'quiz_brain.dart';
 
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -31,19 +30,12 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-  // List<String> questions = [
-  //   'You can lead a cow down stairs but not up stairs.',
-  //   'Approximately one quarter of human bones are in the feet.',
-  //   'slug\'s blood is green.'
-  // ];
-  // List<bool> answers= [false,true,true];
-  // Question q1 = Question('You can lead a cow down stairs but not up stairs.', false);
 
-  List<Question> qlist = [
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('slug\'s blood is green.', true),
-  ];
+  // List<Question> qlist = [
+  //   Question('You can lead a cow down stairs but not up stairs.', false),
+  //   Question('Approximately one quarter of human bones are in the feet.', true),
+  //   Question('slug\'s blood is green.', true),
+  // ];
 
   int quesNum = 0;
   @override
@@ -58,7 +50,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                qlist[quesNum].questionText,
+                QuizBrain.getQuestionText(quesNum),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -84,7 +76,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(
                   () {
-                    bool checkAnswer = qlist[quesNum].questionAnswer;
+                    bool checkAnswer = QuizBrain.getAnswerText(quesNum);
 
                     if (checkAnswer == true) {
                       print('user got it right');
@@ -120,7 +112,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(
                   () {
-                    bool checkAnswer = qlist[quesNum].questionAnswer;
+                    bool checkAnswer = QuizBrain.qlist[quesNum].questionAnswer;
 
                     if (checkAnswer == false) {
                       print('user got it right');
